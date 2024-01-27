@@ -12,5 +12,6 @@ Global
 		{C85B8AA5-12FF-4D78-AF35-FBD46C42BC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C85B8AA5-12FF-4D78-AF35-FBD46C42BC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C85B8AA5-12FF-4D78-AF35-FBD46C42BC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85B8AA5-12FF-4D78-AF35-FBD46C42BC2E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
