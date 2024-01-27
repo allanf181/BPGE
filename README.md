@@ -8,6 +8,8 @@ ButtPlug integration for Apex Legends, CS2, Dota 2, Fortnite, Overwatch, PUBG, R
 
 ## Installation
 
+You can download the latest build [here](https://nightly.link/allanf181/BPGE/workflows/dotnet/master/bpge.zip).
+
 ### Requirements
  - BPGE (obviously)
  - Intiface Central
