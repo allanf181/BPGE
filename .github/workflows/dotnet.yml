@@ -27,4 +27,4 @@ jobs:
       with:
         name: publish
         path: |
-          bin\Release\net8.0\win-x64\publish\*.exe
+          /home/runner/work/BPGE/BPGE/bin/Release/net8.0/win-x64/publish/*.exe
