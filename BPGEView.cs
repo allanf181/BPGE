@@ -18,7 +18,7 @@ namespace BPGE
             IntifacePort = intifacePort;
             init();
             serverLabel.Clicked += () => {
-                Clipboard.Contents = $"{Dns.GetHostName().ToLower()}:23456";
+                Clipboard.Contents = $"http://{Dns.GetHostName().ToLower()}.local/Temporary_Listen_Addresses/";
                 MessageBox.Query ("Copied", "Copied to clipboard", "Ok");
             };
             btnTest.Clicked += async () => {

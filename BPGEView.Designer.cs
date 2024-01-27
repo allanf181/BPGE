@@ -30,7 +30,7 @@ namespace BPGE {
             };
             
             this.serverLabel = new Label () {
-                Text = $"Server (click to copy): {Dns.GetHostName().ToLower()}:23456",
+                Text = $"Server (click to copy): http://{Dns.GetHostName().ToLower()}.local/Temporary_Listen_Addresses/",
             };
             serverLabel.X = Pos.AnchorEnd(serverLabel.Text.Length);
             

@@ -3,7 +3,6 @@
 namespace BPGE;
 
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
 
 public class HttpReceiver
@@ -20,34 +19,42 @@ public class HttpReceiver
     
     private void Listener()
     {
+        
+        using var listener = new HttpListener();
+        listener.Prefixes.Add("http://+:80/Temporary_Listen_Addresses/");
+        listener.Start();
+        
         _bpgeView.LogInfo("HTTP Receiver started");
         _bpgeView.httpReceiverStatusLabel.Text = "Running";
-        TcpListener tcpListener = new TcpListener(IPAddress.Any, 23456);
-        tcpListener.Start();
-        Task.Factory.StartNew(() =>
-        {
-            while (true)
+        while (listener.IsListening)
             {
                 try
                 {
-                    TcpClient client = tcpListener.AcceptTcpClient();
-                    using (NetworkStream stream = client.GetStream())
+                    HttpListenerContext ctx = listener.GetContext();
+                    HttpListenerRequest req = ctx.Request;
+
+                    var body = new StreamReader(req.InputStream).ReadToEnd();
+
+                    using HttpListenerResponse resp = ctx.Response;
+
+                    resp.StatusCode = (int) HttpStatusCode.OK;
+                    resp.StatusDescription = "Status OK";
+                    string data = "OK";
+                    byte[] buffer = Encoding.UTF8.GetBytes(data);
+                    resp.ContentLength64 = buffer.Length;
+
+                    using Stream ros = resp.OutputStream;
+                    ros.Write(buffer, 0, buffer.Length);
+                    
+                    if(req.Headers["Origin"] == "overwolf-extension://iafnecpcfnepnifhkhbifmngngmpkbencicpfmmi")
                     {
-                        byte[] requestBytes = new byte[10240];
-
-                        int readBytes = stream.Read(requestBytes, 0, requestBytes.Length);
-
-                        var requestResult = Encoding.UTF8.GetString(requestBytes, 0, readBytes);
-                        stream.Write(
-                            Encoding.UTF8.GetBytes(
-                                "HTTP/1.0 200 OK" + Environment.NewLine
-                                                  + "Content-Length: " + 0 + Environment.NewLine
-                                                  + "Content-Type: " + "text/plain" + Environment.NewLine
-                                                  + Environment.NewLine + Environment.NewLine));
-                        dynamic json =
-                            JsonConvert.DeserializeObject(
-                                requestResult.Split(Environment.NewLine + Environment.NewLine)[1]);
+                        _bpgeView.LogDebug($"HTTP Request: {Environment.NewLine}{body}");
+                        dynamic json = JsonConvert.DeserializeObject(body);
                         _bpgeView.VibrationManager.ProcessEvents(json);
+                    }
+                    else
+                    {
+                        _bpgeView.LogDebug($"Invalid Request Origin: {req.Headers["Origin"]}");
                     }
                 }
                 catch (Exception e)
@@ -55,6 +62,5 @@ public class HttpReceiver
                     _bpgeView.LogError($"Exception in HTTP Receiver: {Environment.NewLine}{e.ToString()}");
                 }
             }
-        });
     }
 }
