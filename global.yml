@@ -1,0 +1,31 @@
+﻿events:
+  kill:
+    intensity: 30
+    duration: 6
+  knockdown:
+    intensity: 30
+    duration: 6
+  knockout:
+    intensity: 30
+    duration: 6
+  assist:
+    intensity: 10
+    duration: 3
+  revived:
+    intensity: 0
+    duration: 0
+  healed_from_ko:
+    intensity: 0
+    duration: 0
+  death:
+    intensity: 0
+    duration: 0
+  knocked_out:
+    intensity: 25
+    duration: 0  
+  knockedout:
+    intensity: 25
+    duration: 0
+  hit:
+    intensity: 15
+    duration: 0.3
