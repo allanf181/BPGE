@@ -1,4 +1,8 @@
-﻿# ButtPlug Game Events
+﻿### Disclaimer
+
+This project is not endorsed by or affiliated with Overwolf or Home Assistant.
+
+# ButtPlug Game Events
 
 ButtPlug integration for Apex Legends, CS2, Dota 2, Fortnite, Overwatch, PUBG, Rainbow Six Siege, Rocket League, Team Fortress 2, and more! [Full list here](https://overwolf.github.io/api/live-game-data)
 
@@ -11,7 +15,7 @@ ButtPlug integration for Apex Legends, CS2, Dota 2, Fortnite, Overwatch, PUBG, R
  - Overwolf app [Home Assistant Game Events](https://www.overwolf.com/app/BinaryBurger-HomeAssistant_Game_Events)
 
 ### Setup
-1. Launch Intiface Central
+1. Launch Intiface® Central
 2. Start the server and configure your devices
 3. Set the config file for BPGE in same folder as the executable, you can use the global config available in this repo
 4. Launch BPGE and click in the server address to copy it to your clipboard
