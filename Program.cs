@@ -29,6 +29,7 @@
                     finally
                     {
                         Application.Shutdown();
+                        Environment.Exit(0);
                     }
                 });
         }
