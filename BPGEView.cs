@@ -8,14 +8,16 @@ namespace BPGE
     {
         private bool _debug;
         public int IntifacePort;
+        public string IntifaceIP;
         
         public HttpReceiver HttpReceiver;
         public VibrationManager VibrationManager;
 
-        public BPGEView(bool debug, int intifacePort)
+        public BPGEView(bool debug, int intifacePort, string intifaceIP)
         {
             _debug = debug;
             IntifacePort = intifacePort;
+            IntifaceIP = intifaceIP;
             init();
             serverLabel.Clicked += () => {
                 Clipboard.Contents = $"http://{Dns.GetHostName().ToLower()}.local/Temporary_Listen_Addresses/";

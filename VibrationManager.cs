@@ -152,7 +152,7 @@ public class VibrationManager
         {
             _timer = new Timer(100);
             Client = new ButtplugClient("BPGE");
-            _connector = new ButtplugWebsocketConnector(new Uri($"ws://127.0.0.1:{_bpgeView.IntifacePort}"));
+            _connector = new ButtplugWebsocketConnector(new Uri($"ws://{_bpgeView.IntifaceIP}:{_bpgeView.IntifacePort}"));
             await Client.ConnectAsync(_connector);
             _timer.Elapsed += (sender, args) =>
             {

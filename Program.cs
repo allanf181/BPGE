@@ -12,6 +12,9 @@
             
             [Option('p', "port", Required = false, Default = 12345, HelpText = "Intiface Websocket Port")]
             public int IntifacePort { get; set; }
+
+            [Option('i', "ip", Required = false, Default = "localhost", HelpText = "Intiface Websocket IP")]
+            public string IntifaceIP { get; set; }
         }
 
         private static void Main(string[] args)
@@ -20,7 +23,7 @@
                 .WithParsed<Options>(o =>
                 {
                     Application.Init();
-                    var bpge = new BPGEView(o.Debug, o.IntifacePort);
+                    var bpge = new BPGEView(o.Debug, o.IntifacePort, o.IntifaceIP);
 
                     try
                     {
