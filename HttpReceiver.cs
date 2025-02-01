@@ -46,7 +46,7 @@ public class HttpReceiver
                     using Stream ros = resp.OutputStream;
                     ros.Write(buffer, 0, buffer.Length);
                     
-                    if(req.Headers["Origin"] == "overwolf-extension://iafnecpcfnepnifhkhbifmngngmpkbencicpfmmi")
+                    if(req.Headers["Origin"].Contains("iafnecpcfnepnifhkhbifmngngmpkbencicpfmmi"))
                     {
                         _bpgeView.LogDebug($"HTTP Request: {Environment.NewLine}{body}");
                         dynamic json = JsonConvert.DeserializeObject(body);
